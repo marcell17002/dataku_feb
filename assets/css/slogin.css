@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    overflow: hidden;
+  }
+.Logo{
+	margin-left : 40px;
+	margin-top : 20px;
+}
+.Image{
+  margin-top: 5%
+}
+.login{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.txt_ap{
+  margin-left: 40px;
+  margin-top: 50px;
+}
+.logoaja{
+  margin-left: 485px;
+  margin-top: 130px;
+}

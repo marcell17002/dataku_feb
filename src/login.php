@@ -10,20 +10,27 @@ require 'config.php';
 if(isset($_POST["login"]) ){
 	$username = $_POST["username"];
 	$password = $_POST["password"];
-
-	$result = mysqli_query($conn,"SELECT * FROM userhrd WHERE username = '$username'");
-
-	if(mysqli_num_rows($result) == 1){
-		$row = mysqli_fetch_assoc($result);
-		if( $password == $row["password"] ){
-			// set session
+	if ($username =="adminHRD" && $password == "admin"){
+		$_SESSION["login"] = true;
+		header("Location: ./bagian_HR/report.php");
+		exit;
+	}else{
+		if ($username =="adminKeuangan" && $password == "admin"){
 			$_SESSION["login"] = true;
-
-			header("Location: ./bagian_HR/report.php");
+			header("Location: ./bagian_keuangan/pengajuan.php");
 			exit;
+		}else{
+			if ($username =="adminManager" && $password == "admin"){
+				$_SESSION["login"] = true;
+				header("Location: ./manager_akuntansi/pengajuan.php");
+				exit;
+			}else{
+				$error=true;
+			}
 		}
+	
 	}
-	$error = true;
+
 }
 ?>
 

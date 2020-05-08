@@ -7,13 +7,13 @@
   }
   require '../config.php';
 
-  $jumlahDataPerHalaman = 3;
-  $jumlahData = count(query("SELECT * FROM data_karyawan"));
+  $jumlahDataPerHalaman = 8;
+  $jumlahData = count(query("SELECT * FROM pembayaran"));
   $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
   $halamanAktif = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;
   $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 
-  $karyawan = query("SELECT * FROM data_karyawan LIMIT $awalData, $jumlahDataPerHalaman")
+  $karyawan = query("SELECT * FROM pembayaran LIMIT $awalData, $jumlahDataPerHalaman")
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-6">
           <h3 style="padding-top:20%"> Hello, </h3>
-          <h5 style="padding-bottom:5%"> Manager Akuntansi </h5>
+          <h5 style="padding-bottom:5%"> Manager Keuangan </h5>
         </div>
       </div>
     </div>
@@ -47,42 +47,55 @@
   </div>
 
   <div class="content">
-    <h2 style="text-align:center">Data Pegawai</h2>
-    <div style="display:flex; justify-content:flex-end; width:100%; padding:0">
-			<a href="./pengajuan_add.php"><button type="button" class="btn btn-primary" style="margin-top:5%"><i class='fa fa-plus' style='font-size:20px;margin-right:5%'></i>  Ajukan Pembayaran</button></a>
-		</div> 
+    <h2 style="text-align:center">Data Pengajuan Pembayaran</h2>
+    
 
     <div class="content-isi">
     
     <table class="table table-hover">
-      <thead>
+    <thead>
         <tr>
           <th scope="col">Tanggal Pengajuan</th>
-          <th scope="col">Tanggal Diterima</th>
+          <th scope="col">Tanggal Diserahkan</th>
           <th scope="col">Departemen</th>
           <th scope="col">Deskripsi</th>
           <th scope="col">Total</th>
-          <th scope="col">File</th>
+          <th scope="col">File Pengajuan</th>
+          <th scope="col">File Keuangan</th>
+          <th scope="col">Pre Number</th>
           <th scope="col">Status</th>
           <th scope="col" style="width:20%">Action</th>
         </tr>
       </thead>
       <tbody>
         <?php	foreach( $karyawan as $row) : ?>
+          <?php
+          if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+            $status = 'Diajukan';
+          }else{
+            if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] == NULL){
+                $status = 'Disetujui';
+            }else{
+                if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] != NULL){
+                    $status = 'Dibayarkan';
+                }else{
+                    $status = 'Pending';
+                }
+            }
+          }
+          ?>
         <tr>
-          <td><?php echo $row["nama"];?></td>
-          <td><?php echo $row["JK"];?></td>
-          <td><?php echo $row["tmp_lhr"];?></td>
-		  	  <td><?php echo $row["tgl_lhr"];?></td>
-          <td><?php echo $row["divisi"];?></td>
-			    <td><?php echo $row["jabatan"];?></td>
-			    <td><?php echo $row["alamat"];?></td>
-		    	<td><?php echo $row["no_telp"];?></td>
-			    <td><?php echo $row["suamiistri"];?></td>
-			    <td><?php echo $row["anak"];?></td>
+          <td><?php echo $row["tgl_pengajuan"];?></td>
+          <td><?php echo $row["tgl_serah"];?></td>
+          <td><?php echo $row["departemen"];?></td>
+		  	  <td><?php echo $row["deskripsi"];?></td>
+          <td><?php echo $row["total"];?></td>
+			    <td><?php echo $row["file_hrd"];?></td>
+          <td><?php echo $row["file_keuangan"];?></td>
+          <td><?php echo $row["pre_number"];?></td>
+			    <td><?php echo $status;?></td>
           <td style="text-align:center">
-          <a href="report_edit.php?id=<?=$row["id"];?>"><i class='fas fa-edit' style='font-size:20px;margin-right:20px'></i>Edit </a> | 
-          <a href="report_delete.php?id=<?= $row["id"]; ?>" onclick="return confirm('Anda Yakin?');"><i class='fas fa-trash' style='font-size:20px;margin-left:20px;margin-right:20px'></i>Delete</a>
+          <a href="pengajuan_edit.php?id_pembayaran=<?=$row["id_pembayaran"];?>"><i class='fas fa-edit' style='font-size:20px;margin-right:20px'></i>Validasi </a> 
           </td>
         </tr>
         <?php endforeach; ?>

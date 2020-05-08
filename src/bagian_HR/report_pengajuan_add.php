@@ -9,23 +9,31 @@
  $conn = mysqli_connect("localhost","root","","db_simpeg");
 
   if( isset($_POST["submit"])){
-    $nama = $_POST["nama"];
-    $JK = $_POST["JK"];
-    $tmp_lhr = $_POST["tmp_lhr"];
-    $tgl_lhr = $_POST["tgl_lhr"];
-    $divisi = $_POST["divisi"];
-    $jabatan = $_POST["jabatan"];
-    $no_telp = $_POST["no_telp"];
-    $alamat = $_POST["alamat"];
-    $suamiistri = $_POST["suamiistri"];
-    $anak = $_POST["anak"];
+    $deskripsi = $_POST["deskripsi"];
+    $total = $_POST["total"];
+    $file_hrd = $_POST["file_hrd"];
+    $tgl_pengajuan = date("Y/m/d");
+    $departemen = 'HRD';
 
-    $query = "INSERT INTO data_karyawan
+if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+  $status = 'Diajukan';
+}else{
+  if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+      $status = 'Disetujui';
+  }else{
+      if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+          $status = 'Dibayarkan';
+      }else{
+          $status = 'Pending';
+      }
+  }
+}
+    $query = "INSERT INTO pembayaran
               VALUES
-              (null,'$nama','$JK','$tmp_lhr','$tgl_lhr','$divisi','$jabatan','$no_telp','$alamat','$suamiistri',$anak)
+              (null,'$deskripsi','$total','$file_hrd','$tgl_pengajuan'.'$departemen','$status')
             ";
     mysqli_query($conn, $query);
-    header("Location: report.php");
+    header("Location: report_pengajuan.php");
   }
 ?>
 
@@ -68,8 +76,8 @@
               <h3 style="padding-top:3%">Form Pengajuan</h3>
               <div class="row">
                   <div class="col-md-12" style="width:90%">
-                    <label for="nama">Deskripsi</label>
-                    <input type="text" class="form-control" id="deskripsi" name="deksipsi" placeholder="Deskripsi Pengajuan" required>
+                    <label for="deskripsi">Deskripsi</label>
+                    <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi Pengajuan" required>
                   </div>
                 </div>
                 <br>
@@ -82,8 +90,8 @@
                 <br>
                   <div class="row">
                     <div class="group col-md-12" style="width:30%" >
-                    <label for="inputEmail4">Upload File </label>
-                    <input type="file" class="form-control" id="file" name="file_ajuan"><br><br>
+                    <label for="file_hrd">Upload File </label>
+                    <input type="file" class="form-control" id="file_hrd" name="file_hrd"><br><br>
                     </div>
                 </div>
                   </div>

@@ -10,9 +10,11 @@
 
   if( isset($_POST["submit"])){
     $nama = $_POST["nama"];
+    $ktp = $_POST["ktp"];
     $JK = $_POST["JK"];
     $tmp_lhr = $_POST["tmp_lhr"];
     $tgl_lhr = $_POST["tgl_lhr"];
+    $tgl_lhr = $_POST["tgl_masuk"];
     $divisi = $_POST["divisi"];
     $jabatan = $_POST["jabatan"];
     $no_telp = $_POST["no_telp"];
@@ -22,7 +24,7 @@
 
     $query = "INSERT INTO data_karyawan
               VALUES
-              (null,'$nama','$JK','$tmp_lhr','$tgl_lhr','$divisi','$jabatan','$no_telp','$alamat','$suamiistri',$anak)
+              (null,'$nama','$ktp','$JK','$tmp_lhr','$tgl_lhr','$tgl_masuk','$divisi','$jabatan','$no_telp','$alamat','$suamiistri',$anak)
             ";
     mysqli_query($conn, $query);
     header("Location: report.php");
@@ -72,6 +74,10 @@
                   <label for="nama">Nama Lengkap</label>
                   <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required>
                   </div>
+                  <div class="form-group col-md-4">
+                  <label for="ktp">Nomor KTP</label>
+                  <input type="text" class="form-control" id="ktp" name="ktp" placeholder="Nomor KTP" required>
+                  </div>
                   <div class="form-group col-md-2">
                       <label for="JK"> Jenis kelamin</label>
                       <select id="JK" name="JK" class="form-control" required>
@@ -87,6 +93,10 @@
                   <div class="form-group col-md-3">
                       <label for="tgl_lhr">Tanggal Lahir</label> <br>
                       <input type="date"  class="form-control id="tgl_lhr" name="tgl_lhr" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="tgl_masuk">Tanggal Masuk</label> <br>
+                      <input type="date"  class="form-control id="tgl_masuk" name="tgl_masuk" required>
                   </div>
                   
                   <div class="form-group col-md-3">
@@ -110,10 +120,6 @@
                       <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="+62 ..." required>
                   </div>
 
-                  <div class="form-group col-md-8">
-                      <label for="alamat">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
-                  </div>
                   <div class="form-group col-md-2">
                       <label for="suamiistri"> Menikah</label>
                       <select id="suamiistri" name="suamiistri" class="form-control" required>
@@ -124,6 +130,10 @@
                   <div class="form-group col-md-3">
                       <label for="anak">Jumlah Anak</label>
                       <input type="text" class="form-control" id="anak" name="anak" placeholder="..." required>
+                  </div>
+                  <div class="form-group col-md-8">
+                      <label for="alamat">Alamat</label>
+                      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>
                   </div>
               <br>
               <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">

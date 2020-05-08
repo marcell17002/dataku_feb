@@ -7,22 +7,22 @@
     }
     
     require '../config.php';
-    $id = $_GET["id"];
-    $karyawan = query("SELECT * FROM data_karyawan WHERE id = $id")[0];
+    $id_pembayaran = $_GET["id_pembayaran"];
+    $karyawan = query("SELECT * FROM pembayaran WHERE id_pembayaran = $id_pembayaran")[0];
 
     if( isset($_POST["submit"]) ) {
-    if( ubah($_POST) > 0) {
+    if( ubahpengajuan($_POST) > 0) {
         echo "
             <script>
                 alert('Data berhasil diubah!')
-                document.location.href = 'report.php';
+                document.location.href = 'pengajuan.php';
             </script>
         ";
     }else{
         echo "
             <script>
                 alert('Data gagal diubah!')
-                document.location.href = 'report.php';
+                document.location.href = 'pengajuan.php';
             </script>
         ";
     }
@@ -68,53 +68,17 @@
 
           <form  method="post"  action=""> 
           
-                <input type="hidden" nama="id" value="<?= $karyawan["id"]; ?>">
-                  <div class="row">
-                    <h4> Data untuk Validasi </h4>
-                    <div class="form-group col-md-4">
-                      <label for="tmp_lhr">Departemen</label>
-                          <input type="text" class="form-control" id="tmp_lhr" name="tmp_lhr" placeholder="Tempat lahir" disabled required
-                          value="<?= $karyawan["tmp_lhr"]; ?>">
-                    </div>
-                    <div class="form-group col-md-4">
-                      <label for="nama">Tanggal Pengajuan</label>
-                      <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" disabled required
-                      value="<?= $karyawan["nama"]; ?>">
-                  </div>
-                  <div class="form-group col-md-4">
-                      <label for="tmp_lhr">Total</label>
-                          <input type="text" class="form-control" id="tmp_lhr" name="tmp_lhr" placeholder="Tempat lahir" disabled required
-                          value="<?= $karyawan["tmp_lhr"]; ?>">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group col-md-12">
-                      <label for="tmp_lhr">Deskripsi</label>
-                        <input type="text" style="height:50px" class="form-control" id="tmp_lhr" name="tmp_lhr" placeholder="Tempat lahir" disabled required
-                        value="<?= $karyawan["tmp_lhr"]; ?>">
-                      </div>
-                  </div>
-                 
-                  <div class="row">
-                    <div class="form-group col-md-3">
-                      <label for="tmp_lhr">File</label>
-                          <input type="text" class="form-control" id="tmp_lhr" name="tmp_lhr" placeholder="Tempat lahir"disabled required
-                          value="<?= $karyawan["tmp_lhr"]; ?>">
-                    </div>
-                  </div>
-                  <br>
-                  
-                  <div class="row">
+                <input type="hidden" nama="id_pembayaran" value="<?= $karyawan["id_pembayaran"]; ?>">
                   <h4> Isi untuk Validasi </h4>
                     <div class="form-group col-md-6">
-                      <label for="tmp_lhr">Pre number</label>
+                      <label for="pre_number">Pre number</label>
                       <input type="text" class="form-control" id="pre_number" name="pre_number" placeholder="Pre_number" required>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-3">
                     <label for="inputEmail4">Upload File  </label>
-                    <input type="file" class="form-control" id="file" name="file_ajuan"><br><br>
+                    <input type="file" class="form-control" id="file" name="file_keuangan"><br><br>
                     </div>
                   </div>
               <br>

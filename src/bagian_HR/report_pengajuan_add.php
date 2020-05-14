@@ -11,26 +11,14 @@
   if( isset($_POST["submit"])){
     $deskripsi = $_POST["deskripsi"];
     $total = $_POST["total"];
-    $file_hrd = $_POST["file_hrd"];
+    $file_hrd = 'asl';
     $tgl_pengajuan = date("Y/m/d");
     $departemen = 'HRD';
+    $status ='pending';
 
-if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
-  $status = 'Diajukan';
-}else{
-  if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
-      $status = 'Disetujui';
-  }else{
-      if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
-          $status = 'Dibayarkan';
-      }else{
-          $status = 'Pending';
-      }
-  }
-}
     $query = "INSERT INTO pembayaran
               VALUES
-              (null,'$deskripsi','$total','$file_hrd','$tgl_pengajuan'.'$departemen','$status')
+              (NULL,'$deskripsi','$total','$file_hrd','$tgl_pengajuan','$departemen','$status')
             ";
     mysqli_query($conn, $query);
     header("Location: report_pengajuan.php");

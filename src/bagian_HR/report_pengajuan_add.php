@@ -14,10 +14,24 @@
     $file_hrd = $_POST["file_hrd"];
     $tgl_pengajuan = date("Y/m/d");
     $departemen = 'HRD';
+
+    if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+      $status = 'Diajukan';
+    }else{
+      if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] == NULL){
+          $status = 'Disetujui';
+      }else{
+          if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] != NULL){
+              $status = 'Dibayarkan';
+          }else{
+              $status = 'Pending';
+          }
+      }
+    }
     
-    $query = "INSERT INTO pembayaran (id_pembayaran, deskripsi, total, file_hrd, tgl_pengajuan, departemen)
+    $query = "INSERT INTO pembayaran (id_pembayaran, deskripsi, total, file_hrd, tgl_pengajuan, departemen, status)
               VALUES
-              (null,'$deskripsi', $total, '$file_hrd', '$tgl_pengajuan', '$departemen')
+              (null,'$deskripsi', $total, '$file_hrd', '$tgl_pengajuan', '$departemen', '$status')
             ";
 
     mysqli_query($conn, $query);

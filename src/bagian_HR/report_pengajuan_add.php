@@ -14,24 +14,12 @@
     $file_hrd = $_POST["file_hrd"];
     $tgl_pengajuan = date("Y/m/d");
     $departemen = 'HRD';
-
-if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
-  $status = 'Diajukan';
-}else{
-  if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
-      $status = 'Disetujui';
-  }else{
-      if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
-          $status = 'Dibayarkan';
-      }else{
-          $status = 'Pending';
-      }
-  }
-}
-    $query = "INSERT INTO pembayaran
+    
+    $query = "INSERT INTO pembayaran (id_pembayaran, deskripsi, total, file_hrd, tgl_pengajuan, departemen)
               VALUES
-              (null,'$deskripsi','$total','$file_hrd','$tgl_pengajuan'.'$departemen','$status')
+              (null,'$deskripsi', $total, '$file_hrd', '$tgl_pengajuan', '$departemen')
             ";
+
     mysqli_query($conn, $query);
     header("Location: report_pengajuan.php");
   }
@@ -49,7 +37,7 @@ if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bay
 <div class="konten">
   <div class="sidebar">
     <div clas="container">
-    <div class="row">
+      <div class="row">
         <div class="col-md-6">
             <img src="../../assets/img/avatar.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
@@ -60,48 +48,44 @@ if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bay
       </div>
     </div>
     
-    <a href="./report.php"><i class='far fa-credit-card' style='font-size:20px;margin-right:20px;'></i>Data Pegawai</a>
+    <a class="active" href="./report.php"><i class='far fa-credit-card' style='font-size:20px;margin-right:20px;'></i>Data Pegawai</a>
     <a  href="./report_gaji.php"><i class='fas fa-money-check-alt' style='font-size:20px;margin-right:20px'></i>Gaji Pegawai</a>
-    <a class="active"  href="./report_pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
+    <a  href="./report_pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
     <div class="logout">
-      <a href="../logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
+      <a href="./logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
     </div>
   </div>
 
   <div class="content">
-    <h2 style="text-align:center">Pengajuan Pembayaran</h2>
+    <h2 style="text-align:center">Tambah Pengajuan</h2>
     <div class="container-fluid">
+      <div class="row">
         <div class="content-isi">
           <form  method="post"  action=""> 
-              <h3 style="padding-top:3%">Form Pengajuan</h3>
-              <div class="row">
-                  <div class="col-md-12" style="width:90%">
-                    <label for="deskripsi">Deskripsi</label>
-                    <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi Pengajuan" required>
+
+                  <div class="form-group col-md-12">
+                  <label for="deskripsi">Deskripsi</label>
+                  <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required>
                   </div>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-md-5" >
-                      <label for="total">Total</label>
-                      <input type="text" class="form-control" id="total" name="total" placeholder="Rp. ,00-" required>
+                  <div class="form-group col-md-7">
+                  <label for="total">Total</label>
+                  <input type="text" class="form-control" id="total" name="total" placeholder="Rp. " required>
                   </div>
-                </div>
-                <br>
+                  <br>
                   <div class="row">
                     <div class="group col-md-12" style="width:30%" >
-                    <label for="file_hrd">Upload File </label>
-                    <input type="file" class="form-control" id="file_hrd" name="file_hrd"><br><br>
+                      <label for="file_hrd">Upload File </label>
+                      <input type="file" class="form-control" id="file_hrd" name="file_hrd" required><br><br>
                     </div>
-                </div>
                   </div>
-                 
+
               <br>
               <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                 <button type="submit" name='submit' class="btn btn-primary" style="margin-top:5%"> Submit</button>
               </div>
           </form>
         </div>
+      </div>
   </div>
 </div>
 </div>

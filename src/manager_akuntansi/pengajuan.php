@@ -68,7 +68,7 @@
         </tr>
       </thead>
       <tbody>
-        <?php	foreach( $karyawan as $row) : ?>
+        <?php  	foreach( $karyawan as $row) :  ?>
           <?php
           if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
             $status = 'Diajukan';
@@ -91,7 +91,7 @@
 		  	  <td><?php echo $row["deskripsi"];?></td>
           <td><?php echo $row["total"];?></td>
 			    <td><?php echo $row["file_hrd"];?></td>
-          <td><?php echo $row["file_keuangan"];?></td>
+          <td><a href="<?php echo $row['file_keuangan'] ?>" download><?php echo $row["file_keuangan"];?></a></td>
           <td><?php echo $row["pre_number"];?></td>
 			    <td><?php echo $status;?></td>
           <td style="text-align:center">

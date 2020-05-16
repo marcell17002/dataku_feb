@@ -59,8 +59,8 @@
           <th scope="col">Total</th>
           <th scope="col">File HRD</th>
           <th scope="col">File Keuangan</th>
-          <th scope="col">Status</th>
           <th scope="col">Bukti Bayar</th>
+          <th scope="col">Status</th>
           <th scope="col" style="width:20%">Action</th>
         </tr>
       </thead>
@@ -89,8 +89,8 @@
           <td><?php echo $row["total"];?></td>
 			    <td><?php echo $row["file_hrd"];?></td>
           <td><?php echo $row["file_keuangan"];?></td>
-			    <td><?php echo $status;?></td>
           <td><?php echo $row["bukti_bayar"];?></td>
+			    <td><?php echo $status;?></td>
           <td style="text-align:center">
           <a href="pembayaran_edit.php?id_pembayaran=<?=$row["id_pembayaran"];?>"><i class='fas fa-edit' style='font-size:20px;margin-right:20px'></i>Bayar </a>
           </td>

@@ -67,10 +67,10 @@
         <div class="content-isi">
 
 
-          <form  method="post"  action=""> 
+          <form  method="post"  action="" enctype="multipart/form-data"> 
                 <input type="hidden" nama="id_pembayaran" value="<?= $karyawan["id_pembayaran"]; ?>">
                 
-                <div class="col-md-12" style="width:90%">
+                <div class="col-md-12">
                     <label for="deskripsi">Deskripsi</label>
                     <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi Pengajuan" required
                     value="<?= $karyawan["deskripsi"]; ?>">
@@ -87,8 +87,8 @@
                   <div class="row">
                     <div class="group col-md-12" style="width:30%" >
                     <label for="file_hrd">Upload File </label>
-                    <input type="file" class="form-control" id="file_hrd" name="file_hrd" required
-                    value="<?= $karyawan["file_hrd"]; ?>"><br><br>
+                    <embed src="file/<?= $karyawan['file_hrd']; ?>" type="application/pdf" width="100%" height="25px">
+                    <input type="file" class="form-control" id="file_hrd" name="file_hrd"><br><br>
                     </div>
                 </div>
               <br>

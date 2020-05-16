@@ -1,33 +1,25 @@
 <?php
  session_start();
-
+  
  if( !isset($_SESSION["login"]) ){
    header("Location: ../login.php");
    exit;
  }
- 
- $conn = mysqli_connect("localhost","root","","db_simpeg");
 
+ require '../config.php';
   if( isset($_POST["submit"])){
-    $nama = $_POST["nama"];
-    $ktp = $_POST["ktp"];
-    $JK = $_POST["JK"];
-    $tmp_lhr = $_POST["tmp_lhr"];
-    $tgl_lhr = $_POST["tgl_lhr"];
-    $tgl_lhr = $_POST["tgl_masuk"];
-    $divisi = $_POST["divisi"];
-    $jabatan = $_POST["jabatan"];
-    $no_telp = $_POST["no_telp"];
-    $alamat = $_POST["alamat"];
-    $suamiistri = $_POST["suamiistri"];
-    $anak = $_POST["anak"];
-
-    $query = "INSERT INTO data_karyawan
-              VALUES
-              (null,'$nama','$ktp','$JK','$tmp_lhr','$tgl_lhr','$tgl_masuk','$divisi','$jabatan','$no_telp','$alamat','$suamiistri',$anak)
-            ";
-    mysqli_query($conn, $query);
-    header("Location: report.php");
+    
+      if( tambah($_POST) > 0){
+        echo "<script>
+        alert('Data berhasil ditambahkan!');
+        documents.location.href = 'report.php';
+      </script>";
+      }else{
+        echo "<script>
+        alert('Data gagal ditambahkan!');
+        documents.location.href = 'report.php';
+      </script>";
+      }
   }
 ?>
 
@@ -67,6 +59,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="content-isi">
+        
           <form  method="post"  action=""> 
               <h3 style="padding-top:3%">Data Pribadi</h3>
 

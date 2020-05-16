@@ -90,7 +90,7 @@
           <td><?php echo $row["departemen"];?></td>
 		  	  <td><?php echo $row["deskripsi"];?></td>
           <td><?php echo $row["total"];?></td>
-			    <td><?php echo $row["file_hrd"];?></td>
+			    <td><a href="<?php echo $row['file_hrd'] ?>" download><?php echo $row["file_hrd"];?></td>
           <td><a href="<?php echo $row['file_keuangan'] ?>" download><?php echo $row["file_keuangan"];?></a></td>
           <td><?php echo $row["pre_number"];?></td>
 			    <td><?php echo $status;?></td>

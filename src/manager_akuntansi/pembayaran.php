@@ -61,8 +61,8 @@
           <th scope="col">Total</th>
           <th scope="col">File HRD</th>
           <th scope="col">File Keuangan</th>
-          <th scope="col">Status</th>
           <th scope="col">Bukti Bayar</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -90,8 +90,8 @@
           <td><?php echo $row["total"];?></td>
 			    <td><?php echo $row["file_hrd"];?></td>
           <td><?php echo $row["file_keuangan"];?></td>
-			    <td><?php echo $status;?></td>
           <td><?php echo $row["bukti_bayar"];?></td>
+          <td><?php echo $status;?></td>
         </tr>
         <?php endforeach; ?>
 

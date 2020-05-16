@@ -7,7 +7,7 @@
   }
   require '../config.php';
 
-  $jumlahDataPerHalaman = 3;
+  $jumlahDataPerHalaman = 5;
   $jumlahData = count(query("SELECT * FROM pembayaran"));
   $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
   $halamanAktif = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;

@@ -66,7 +66,7 @@
         <div class="content-isi">
 
 
-          <form  method="post"  action=""> 
+          <form  method="post"  action="" enctype="multipart/form-data"> 
           
                 <input type="hidden" nama="id_pembayaran" value="<?= $karyawan["id_pembayaran"]; ?>">
                   
@@ -74,6 +74,7 @@
                   <h4> Upload untuk Validasi Pembayaran</h4>
                     <div class="form-group col-md-4">
                     <label for="bukti_bayar">Upload File  </label>
+                    <embed src="file/<?= $karyawan['bukti_bayar']; ?>" type="application/pdf" width="100%" height="25px">
                     <input type="file" class="form-control" id="bukti_bayar" name="bukti_bayar"><br><br>
                     </div>
                   </div>

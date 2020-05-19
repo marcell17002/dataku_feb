@@ -28,7 +28,7 @@
     }
 }
 ?>
-
+<?php include("config.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,6 +96,7 @@
                 <button type="submit" name='submit' class="btn btn-primary" style="margin-top:5%"> Update</button>
               </div>
           </form>
+          
         </div>
       </div>
   </div>

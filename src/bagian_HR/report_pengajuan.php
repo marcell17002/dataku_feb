@@ -15,7 +15,7 @@
 
   $karyawan = query("SELECT * FROM pembayaran LIMIT $awalData, $jumlahDataPerHalaman");
 ?>
-
+<?php include("config.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +91,7 @@
           <td><?php echo $row["departemen"];?></td>
 		  	  <td><?php echo $row["deskripsi"];?></td>
           <td><?php echo $row["total"];?></td>
-			    <td><?php echo $row["file_hrd"];?></td>
+			    <td><a href="../uploads/'.<?php echo $row['file_name_HR']?>.'"><?php echo $row["file_name_HR"];?></a></td>
 			    <td><?php echo $status;?></td>
           <td style="text-align:center">
           <a href="report_pengajuan_edit.php?id_pembayaran=<?=$row["id_pembayaran"];?>"><i class='fas fa-edit' style='font-size:20px;margin-right:20px'></i>Edit </a> | 
@@ -99,6 +99,34 @@
           </td>
         </tr>
         <?php endforeach; ?>
+
+       
+        <table class="table table-striped table-hover">
+      <tr>
+        <th>NO.</th>
+        <th>FILE NAME</th>
+      </tr>
+      <!-- start here  -->
+      <?php
+      $sql = $conn->query("SELECT * FROM pembayaran ORDER BY id_pembayaran DESC");
+      if($sql->num_rows > 0){
+        $no = 1;
+        while($row = $sql->fetch_assoc()){
+          echo '
+          <tr>
+            <td>'.$no.'</td>
+            <td><a href="../uploads/'.$row['file_name_HR'].'">'.$row['file_name_HR'].'</a></td>
+          </tr>
+          ';
+          $no++;
+        }
+      }else{
+        echo '<tr><td colspan="5">Tidak ada data</td></tr>';
+      }
+      ?>
+
+    </table>
+
 
       <?php // Pagination ?>
       <?php if($halamanAktif > 1) : ?>

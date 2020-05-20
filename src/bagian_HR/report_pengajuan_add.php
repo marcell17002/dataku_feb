@@ -6,22 +6,6 @@
  }
  
   require '../config.php';
-  
-  if( isset($_POST["submit"])){
-
-    if( tambah2($_POST) > 0){
-      echo "<script>
-      alert('Data berhasil ditambahkan!');
-      document.location.href = 'report_pengajuan.php';
-    </script>";
-    }else{
-      echo "<script>
-      alert('Data gagal ditambahkan!');
-      document.location.href = 'report_pengajuan.php';
-    </script>";
-    }
-
-  }
 ?>
 
 <?php include("config.php"); ?>
@@ -81,7 +65,7 @@
               <div class="row">
                 <div class="col-md-10">
                   <label for="file_hrd">Upload File </label>
-                  <input type="file" name="myFile" class="filestyle" data-icon="false">
+                  <input type="file" name="myFile" class="filestyle" data-icon="false" required>
                 </div>
                 <div class="col-md-2">
                   <input type="submit" name="upload" class="btn btn-primary" value="Upload">
@@ -122,7 +106,14 @@
             exit;
           }else{
 
-            $insert = $conn->query("INSERT INTO pembayaran(file_name_HR, file_size_HR, file_type_HR) VALUES('$name', '$size', '$ext')");
+            $deskripsi = $_POST["deskripsi"];
+            $total = $_POST["total"];
+            $tgl_pengajuan = date("Y/m/d");
+            $departemen = 'HRD';
+            
+            $insert = $conn->query("INSERT INTO pembayaran
+            (file_name_HR, file_size_HR, file_type_HR, deskripsi, total, tgl_pengajuan, departemen) 
+            VALUES('$name', '$size', '$ext', '$deskripsi', $total, '$tgl_pengajuan', '$departemen')");
             if($insert){
               echo '<div class="alert alert-success" style="margin-top:20px">File berhasil di upload.</div>';
             }else{
@@ -133,6 +124,7 @@
 
           // set permisi file
           chmod(UPLOAD_DIR . $name, 0644);
+          header("Location: report_pengajuan.php");
         }
         ?>
 

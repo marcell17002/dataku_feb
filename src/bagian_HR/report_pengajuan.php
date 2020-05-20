@@ -48,7 +48,7 @@
   </div>
 
   <div class="content">
-    <h2 style="text-align:center">Data Pegawai</h2>
+    <h2 style="text-align:center">Pengajuan Pembayaran</h2>
     <div style="display:flex; justify-content:flex-end; width:100%; padding:0">
 			<a href="./report_pengajuan_add.php"><button type="button" class="btn btn-primary" style="margin-top:5%"><i class='fa fa-plus' style='font-size:20px;margin-right:5%'></i>  Ajukan Pembayaran</button></a>
 		</div> 
@@ -69,64 +69,45 @@
         </tr>
       </thead>
       <tbody>
-        <?php	foreach( $karyawan as $row) : ?>
-        <?php
-          if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+      <?php
+      $sql = $conn->query("SELECT * FROM pembayaran ORDER BY id_pembayaran LIMIT $awalData, $jumlahDataPerHalaman");
+      if($sql->num_rows > 0){
+        
+        while($row = $sql->fetch_assoc()){
+
+          if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] == NULL && $row["file_name_Bayar"] == NULL){
             $status = 'Diajukan';
           }else{
-            if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] == NULL){
+            if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] == NULL){
                 $status = 'Disetujui';
             }else{
-                if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] != NULL){
+                if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] != NULL){
                     $status = 'Dibayarkan';
                 }else{
                     $status = 'Pending';
                 }
             }
           }
-          ?>
-        <tr>
-          <td><?php echo $row["tgl_pengajuan"];?></td>
-          <td><?php echo $row["tgl_serah"];?></td>
-          <td><?php echo $row["departemen"];?></td>
-		  	  <td><?php echo $row["deskripsi"];?></td>
-          <td><?php echo $row["total"];?></td>
-			    <td><a href="../uploads/'.<?php echo $row['file_name_HR']?>.'"><?php echo $row["file_name_HR"];?></a></td>
-			    <td><?php echo $status;?></td>
-          <td style="text-align:center">
-          <a href="report_pengajuan_edit.php?id_pembayaran=<?=$row["id_pembayaran"];?>"><i class='fas fa-edit' style='font-size:20px;margin-right:20px'></i>Edit </a> | 
-          <a href="report_pengajuan_delete.php?id_pembayaran=<?= $row["id_pembayaran"]; ?>" onclick="return confirm('Anda Yakin?');"><i class='fas fa-trash' style='font-size:20px;margin-left:20px;margin-right:20px'></i>Delete</a>
-          </td>
-        </tr>
-        <?php endforeach; ?>
 
-       
-        <table class="table table-striped table-hover">
-      <tr>
-        <th>NO.</th>
-        <th>FILE NAME</th>
-      </tr>
-      <!-- start here  -->
-      <?php
-      $sql = $conn->query("SELECT * FROM pembayaran ORDER BY id_pembayaran DESC");
-      if($sql->num_rows > 0){
-        $no = 1;
-        while($row = $sql->fetch_assoc()){
           echo '
           <tr>
-            <td>'.$no.'</td>
+            <td>'.$row["tgl_pengajuan"].'</td>
+            <td>'.$row["tgl_serah"].'</td>
+            <td>'.$row["departemen"].'</td>
+            <td>'.$row["deskripsi"].'</td>
+            <td>'.$row["total"].'</td>
             <td><a href="../uploads/'.$row['file_name_HR'].'">'.$row['file_name_HR'].'</a></td>
+            <td>'.$status.'</td>
+            <td style="text-align:center">
+            <td><a href="report_pengajuan_edit.php?id_pembayaran='. $row['id_pembayaran'] .'"<i class="fas fa-edit" style="font-size:20px;margin-right:20px"></i> Edit </a></td>
+            <td><a href="report_pengajuan_delete.php?id_pembayaran='. $row["id_pembayaran"] .'"<i class="fas fa-trash" style="font-size:20px;margin-left:20px;margin-right:20px"></i>Delete</a></td>
           </tr>
           ';
-          $no++;
         }
       }else{
         echo '<tr><td colspan="5">Tidak ada data</td></tr>';
       }
       ?>
-
-    </table>
-
 
       <?php // Pagination ?>
       <?php if($halamanAktif > 1) : ?>

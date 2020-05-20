@@ -13,7 +13,9 @@
   $halamanAktif = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;
   $awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
 
-  $karyawan = query("SELECT * FROM data_karyawan LIMIT $awalData, $jumlahDataPerHalaman")
+  $karyawan = query("SELECT *
+                      FROM data_karyawan
+                      LIMIT $awalData, $jumlahDataPerHalaman")
 ?>
 
 <!DOCTYPE html>
@@ -63,65 +65,23 @@
         </tr>
       </thead>
       <tbody>
-      <?php	foreach( $karyawan as $row) : ?>
+      <?php $totalgaji = 0;?>
+      <?php	foreach( $karyawan as $row) : ?>        
         <tr>
         <?php 
-          if ($row["jabatan"] == "Manager"){
-            $gajiperbulan = 25000000;
-            $bpjs = 250000;
-          }else {
-            if ($row["jabatan"] == "Staff"){
-              $gajiperbulan = 10000000;
-              $bpjs = 100000;
-            } else {
-                $gajiperbulan = 50000000;
-                $bpjs = 500000;
-            }
-          }
-        ?>
-        <?php
-          $gajipertahun = ($gajiperbulan * 12) - 54000000;
-        ?>
-        <?php 
-          if ($row["suamiistri"] == "Ya"){
-            $tunjangan_nikah = 4500000;
-          } else {
-            $tunjangan_nikah = 0;
-          }
-        ?>
-        <?php 
-          if ($row["anak"] < 2){
-            $tunjangan_anak = $row["anak"] * 4500000;
-          } else {
-            $tunjangan_anak = 9000000;
-          }
-        ?>
-        <?php $pendapatankenapajak = $gajipertahun - $tunjangan_nikah - $tunjangan_anak;
-            if ($pendapatankenapajak > 500000000){
-              $p1 = 50000000 * 0.05;
-              $p2 = 250000000 * 0.15;
-              $a1 = $pendapatankenapajak - 300000000;
-              $p3 = $a1 * 0.25;
-            } else {
-              $p1 = 50000000 * 0.05;
-              $a2 = $pendapatankenapajak - 50000000;
-              $p2 = $a2 * 0.15;
-              $p3 = 0;
-            }
-            $pajakpertahun = $p1 + $p2 + $p3;
-            $pajakbulanan = $pajakpertahun / 12;
-            $gajiakhir = $gajiperbulan - $pajakbulanan - $bpjs;
-        ?>
+        $totalgaji = $totalgaji + $row["gajiakhir"];?>
           <td><?php echo $row["nama"];?></td>
           <td><?php echo $row["divisi"];?></td>
           <td><?php echo $row["jabatan"];?></td>
-          <td><?php echo $gajiperbulan;?></td>
-          <td><?php echo $pajakbulanan;?></td>
-		    	<td><?php echo $gajiakhir;?></td>
+          <td><?php echo $row["gajiperbulan"];?></td>
+          <td><?php echo $row["pajakbulanan"];?></td>
+		    	<td><?php echo $row["gajiakhir"];?></td>
           <td style="text-align:center">
+          <a href="report_gaji_download.php?>">Download </a>
           </td>
         </tr>
-        <?php endforeach; ?>
+        <?php endforeach; ?> 
+        
         <?php // Pagination ?>
           <?php if($halamanAktif > 1) : ?>
          <a href="?page<?= $halamanAktif - 1; ?>">&laquo;</a>
@@ -138,6 +98,7 @@
        <?php endif; ?>
         </tbody>
     </table>
+    Total Gaji : <?php echo $totalgaji;?>
     </div>
   </div>
   </div>

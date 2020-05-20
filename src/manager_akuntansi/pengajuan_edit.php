@@ -72,21 +72,75 @@
                   <h4> Isi untuk Validasi </h4>
                     <div class="form-group col-md-6">
                       <label for="pre_number">Pre number</label>
-                      <input type="text" class="form-control" id="pre_number" name="pre_number" placeholder="Pre_number" required>
+                      <input type="text" class="form-control" id="pre_number" name="pre_number" placeholder="Pre_number" required
+                      value="<?= $karyawan["pre_number"]; ?>">
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-group col-md-3">
-                    <label for="inputEmail4">Upload File  </label>
-                    <embed src="file/<?= $karyawan['file_keuangan']; ?>" type="application/pdf" width="100%" height="25px">
-                    <input type="file" class="form-control" id="file" name="file_keuangan"><br><br>
+                    <div class="col-md-10">
+                      <label for="bukti_bayar">Upload File </label>
+                      <input type="file" name="myFile" class="filestyle" data-icon="false">
+                    </div>
+                    <div class="col-md-2">
+                      <input type="submit" name="upload" class="btn btn-primary" value="Upload">
                     </div>
                   </div>
-              <br>
-              <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                <button type="submit" name='submit' class="btn btn-primary" style="margin-top:2%"> Validasi</button>
-              </div>
           </form>
+
+          <?php
+        // definisi folder upload
+        define("UPLOAD_DIR", "../uploads/");
+        $id_pembayaran = $_GET["id_pembayaran"];
+
+        if (!empty($_FILES["myFile"])) {
+          $myFile = $_FILES["myFile"];
+          $ext    = pathinfo($_FILES["myFile"]["name"], PATHINFO_EXTENSION);
+          $size   = $_FILES["myFile"]["size"];
+          
+          if ($myFile["error"] !== UPLOAD_ERR_OK) {
+            echo '<div class="alert alert-warning" style="margin-top:20px">Gagal upload file.</div>';
+            exit;
+          }
+
+          // filename yang aman
+          $name = preg_replace("/[^A-Z0-9._-]/i", "_", $myFile["name"]);
+
+          // mencegah overwrite filename
+          $i = 0;
+          $parts = pathinfo($name);
+          while (file_exists(UPLOAD_DIR . $name)) {
+            $i++;
+            $name = $parts["filename"] . "-" . $i . "." . $parts["extension"];
+          }
+
+          // upload file
+          $success = move_uploaded_file($myFile["tmp_name"],
+            UPLOAD_DIR . $name);
+          if (!$success) { 
+            echo '<div class="alert alert-warning" style="margin-top:20px">Gagal upload file.</div>';
+            exit;
+          }else{
+
+            $pre_number = htmlspecialchars($_POST["pre_number"]);
+
+            $insert = $conn->query("UPDATE pembayaran
+            SET file_name_Bayar = '$name', file_size_Bayar = '$size', file_type_Bayar = '$ext', pre_number = '$pre_number'
+            WHERE id_pembayaran = $id_pembayaran  ");
+            
+            if($insert){
+              echo '<div class="alert alert-success" style="margin-top:20px">File berhasil di upload.</div>';
+            }else{
+              echo '<div class="alert alert-warning" style="margin-top:20px">Gagal upload file.</div>';
+              exit;
+            }
+          }
+
+          // set permisi file
+          chmod(UPLOAD_DIR . $name, 0644);
+          header("Location: pengajuan.php");
+        }
+        ?>
+
         </div>
       </div>
   </div>

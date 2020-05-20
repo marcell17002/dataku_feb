@@ -1,32 +1,12 @@
 <?php 
     session_start();
-
     if( !isset($_SESSION["login"]) ){
       header("Location: ../login.php");
       exit;
     }
-    
     require '../config.php';
     $id_pembayaran = $_GET["id_pembayaran"];
     $karyawan = query("SELECT * FROM pembayaran WHERE id_pembayaran = $id_pembayaran")[0];
-
-    if( isset($_POST["submit"]) ) {
-    if( ubah2($_POST) > 0) {
-      echo "
-            <script>
-                alert('Data berhasil diubah!')
-                document.location.href = 'report_pengajuan.php';
-            </script>
-        ";
-    }else{
-        echo "
-            <script>
-                alert('Data gagal diubah!')
-                document.location.href = 'report_pengajuan.php';
-            </script>
-        ";
-    }
-}
 ?>
 <?php include("config.php"); ?>
 <!DOCTYPE html>
@@ -84,19 +64,75 @@
                   </div>
                 </div>
                 <br>
-                  <div class="row">
-                    <div class="group col-md-12" style="width:30%" >
-                    <label for="file_hrd">Upload File </label>
-                    <embed src="file/<?= $karyawan['file_hrd']; ?>" type="application/pdf" width="100%" height="25px">
-                    <input type="file" class="form-control" id="file_hrd" name="file_hrd"><br><br>
-                    </div>
+                <div class="row">
+                <div class="col-md-10">
+                  <label for="file_hrd">Upload File </label>
+                  <input type="file" name="myFile" class="filestyle" data-icon="false">
                 </div>
-              <br>
-              <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                <button type="submit" name='submit' class="btn btn-primary" style="margin-top:5%"> Update</button>
+                <div class="col-md-2">
+                  <input type="submit" name="upload" class="btn btn-primary" value="Upload">
+                </div>
               </div>
           </form>
           
+          <?php
+        // definisi folder upload
+        define("UPLOAD_DIR", "../uploads/");
+        $id_pembayaran = $_GET["id_pembayaran"];
+
+        if (!empty($_FILES["myFile"])) {
+          $myFile = $_FILES["myFile"];
+          $ext    = pathinfo($_FILES["myFile"]["name"], PATHINFO_EXTENSION);
+          $size   = $_FILES["myFile"]["size"];
+          
+          if ($myFile["error"] !== UPLOAD_ERR_OK) {
+            echo '<div class="alert alert-warning" style="margin-top:20px">Gagal upload file.</div>';
+            exit;
+          }
+
+          // filename yang aman
+          $name = preg_replace("/[^A-Z0-9._-]/i", "_", $myFile["name"]);
+
+          // mencegah overwrite filename
+          $i = 0;
+          $parts = pathinfo($name);
+          while (file_exists(UPLOAD_DIR . $name)) {
+            $i++;
+            $name = $parts["filename"] . "-" . $i . "." . $parts["extension"];
+          }
+
+          // upload file
+          $success = move_uploaded_file($myFile["tmp_name"],
+            UPLOAD_DIR . $name);
+          if (!$success) { 
+            echo '<div class="alert alert-warning" style="margin-top:20px">Gagal upload file.</div>';
+            exit;
+          }else{
+            
+            $deskripsi = $_POST["deskripsi"];
+            $total = $_POST["total"];
+            $tgl_pengajuan = date("Y/m/d");
+            $departemen = 'HRD';
+
+            $insert = $conn->query("UPDATE pembayaran
+            SET file_name_HR = '$name', file_size_HR = $size, file_type_HR = '$ext',
+            deskripsi = '$deskripsi', total = $total, tgl_pengajuan = '$tgl_pengajuan', departemen = '$departemen'
+            WHERE id_pembayaran = $id_pembayaran  ");
+
+            if($insert){
+              echo '<div class="alert alert-success" style="margin-top:20px">File berhasil di upload.</div>';
+            }else{
+              echo '<div class="alert alert-warning" style="margin-top:20px">Gagal upload file.</div>';
+              exit;
+            }
+          }
+
+          // set permisi file
+          chmod(UPLOAD_DIR . $name, 0644);
+          header("Location: report_pengajuan.php");
+        }
+        ?>
+
         </div>
       </div>
   </div>

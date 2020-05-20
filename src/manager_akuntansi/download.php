@@ -1,27 +1,27 @@
 <?php 
-    if (isset($_GET['filename'])) {
-    $filename    = $_GET['filename'];
+    if (isset($_GET['file_hrd'])) {
+    $file_hrd    = $_GET['file_hrd'];
 
-    $back_dir    ="assets/";
-    $file = $back_dir.$_GET['filename'];
+    $back_dir    ="file/";
+    $file_hrd = $back_dir.$_GET['file_hrd'];
      
-        if (file_exists($file)) {
+        if (file_exists($file_hrd)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename='.basename($file));
+            header('Content-Disposition: attachment; file_hrd='.basename($file_hrd));
             header('Content-Transfer-Encoding: binary');
             header('Expires: 0');
             header('Cache-Control: private');
             header('Pragma: private');
-            header('Content-Length: ' . filesize($file));
+            header('Content-Length: ' . filesize($file_hrd));
             ob_clean();
             flush();
-            readfile($file);
+            readfile($file_hrd);
             
             exit;
         } 
         else {
-            $_SESSION['pesan'] = "Oops! File - $filename - not found ...";
+            $_SESSION['pesan'] = "Oops! File - $file_hrd - not found ...";
             header("location:pengajuan.php");
         }
     }

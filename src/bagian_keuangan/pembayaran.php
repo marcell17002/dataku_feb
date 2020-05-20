@@ -65,37 +65,46 @@
         </tr>
       </thead>
       <tbody>
-        <?php	foreach( $karyawan as $row) : ?>
-          <?php
-          if ($row["file_hrd"] != NULL && $row["file_keuangan"] == NULL && $row["bukti_bayar"] == NULL){
+      <?php
+      $sql = $conn->query("SELECT * FROM pembayaran ORDER BY id_pembayaran LIMIT $awalData, $jumlahDataPerHalaman");
+      if($sql->num_rows > 0){
+        
+        while($row = $sql->fetch_assoc()){
+
+          if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] == NULL && $row["file_name_Bayar"] == NULL){
             $status = 'Diajukan';
           }else{
-            if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] == NULL){
+            if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] == NULL){
                 $status = 'Disetujui';
             }else{
-                if ($row["file_hrd"] != NULL && $row["file_keuangan"] != NULL && $row["bukti_bayar"] != NULL){
+                if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] != NULL){
                     $status = 'Dibayarkan';
                 }else{
                     $status = 'Pending';
                 }
             }
           }
-          ?>
-        <tr>
-          <td><?php echo $row["tgl_pengajuan"];?></td>
-          <td><?php echo $row["tgl_serah"];?></td>
-          <td><?php echo $row["departemen"];?></td>
-		  	  <td><?php echo $row["deskripsi"];?></td>
-          <td><?php echo $row["total"];?></td>
-			    <td><?php echo $row["file_hrd"];?></td>
-          <td><?php echo $row["file_keuangan"];?></td>
-          <td><?php echo $row["bukti_bayar"];?></td>
-			    <td><?php echo $status;?></td>
-          <td style="text-align:center">
-          <a href="pembayaran_edit.php?id_pembayaran=<?=$row["id_pembayaran"];?>"><i class='fas fa-edit' style='font-size:20px;margin-right:20px'></i>Bayar </a>
-          </td>
-        </tr>
-        <?php endforeach; ?>
+
+          echo '
+          <tr>
+            <td>'.$row["tgl_pengajuan"].'</td>
+            <td>'.$row["tgl_serah"].'</td>
+            <td>'.$row["departemen"].'</td>
+            <td>'.$row["deskripsi"].'</td>
+            <td>'.$row["total"].'</td>
+            <td><a href="../uploads/'.$row['file_name_HR'].'">'.$row['file_name_HR'].'</a></td>
+            <td><a href="../uploads/'.$row['file_name_Keuangan'].'">'.$row['file_name_Keuangan'].'</a></td>
+            <td><a href="../uploads/'.$row['file_name_Bayar'].'">'.$row['file_name_Bayar'].'</a></td>
+            <td>'.$status.'</td>
+            <td style="text-align:center">
+            <td><a href="pembayaran_edit.php?id_pembayaran='. $row['id_pembayaran'] .'"<i class="fas fa-edit" style="font-size:20px;margin-right:20px"></i> Bayar </a></td>
+          </tr>
+          ';
+        }
+      }else{
+        echo '<tr><td colspan="5">Tidak ada data</td></tr>';
+      }
+      ?>
 
       <?php // Pagination ?>
       <?php if($halamanAktif > 1) : ?>

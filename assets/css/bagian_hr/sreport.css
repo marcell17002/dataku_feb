@@ -1,19 +1,28 @@
-body {font-family: Arial;background-image: url('../../img/background.jpg');overflow: hidden;}
-
+body {font-family: monospace;background-color: #4bc1d9;overflow: hidden;height: 600px;
+  }
+.button{
+  background-color:#4797ce;
+}
+.th{
+  text-align: center;
+}
 .konten{
   margin-left:2%;
   margin-top:2%;
   margin-right:2%;
-  margin-bottom: 2%;
+  margin-bottom: 80%;
 }
 .content{
-  background-color: #fafafa;
+  background-color: #f5f5f5;
   border: 2px solid #ffff;
-  padding: 10px;
+  padding: 20px;
   border-top-right-radius: 14px;
+  padding-right: 20%;
+  height: 200px;
+  
 }
 .sidebar{
-  border: 2px solid #ffff;
+  border: 2px solid #00365c;
   border-top-left-radius: 14px;
 }
 body {
@@ -25,10 +34,12 @@ body {
   margin: 0;
   padding: 0;
   width: 300px;
-  background-color: #ffff;
+  background-color: #00365c;
   position: fixed;
-  height: 100%;
-  overflow: auto;
+  height: 93%;
+  border: 2px solid #00365c;
+  border-bottom-left-radius: 14px;
+  overflow: hidden;
 }
 
 .sidebar a {
@@ -39,19 +50,20 @@ body {
 }
  
 .sidebar a.active {
-  background-color: 	 	 #b380ff;
+  background-color: 	 	 #0d4871;
   color: white;
 }
 
 .sidebar a:hover:not(.active) {
-  background-color: #b380ff;
+  background-color: #0d4871;
   color: white;
 }
 
 div.content {
   margin-left: 200px;
   padding: 1px 16px;
-  height: 1000px;
+  height: 808px;
+  border-bottom-right-radius: 14px;
 }
 
 @media screen and (max-width: 700px) {
@@ -78,8 +90,17 @@ div.content {
 }
 
 .content-isi{
-  margin-left: 10%;
+  margin-left: 12%;
   margin-right: 5%;
   overflow:auto;
   margin-top:2%;
+  background-color: white;
+  padding : 20px;
+}
+mark{
+  background-color: #4797ce;
+  border-radius: 30%;
+  color:white;
+  padding-left :10px;
+  padding-right :10px;
 }

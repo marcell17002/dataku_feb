@@ -33,16 +33,16 @@
             <img src="../../assets/img/keuangan.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
         <div class="col-md-6">
-          <h3 style="padding-top:20%"> Hello, </h3>
-          <h5 style="padding-bottom:5%"> Admin Keuangan </h5>
+          <h3 style="padding-top:20%;color:white"> Hello, </h3>
+          <h5 style="padding-bottom:5%;color:white"> Admin Keuangan </h5>
         </div>
       </div>
     </div>
     
-    <a class="active" href="./pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
-    <a  href="./pembayaran.php"><i class='fas fa-receipt' style='font-size:20px;margin-right:20px'></i> Pembayaran</a>
+    <a class="active" href="./pengajuan.php" style="color:white"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
+    <a  style="color:white" href="./pembayaran.php"><i class='fas fa-receipt' style='font-size:20px;margin-right:20px'></i> Pembayaran</a>
     <div class="logout">
-      <a href="../logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
+      <a href="../logout.php" style="color:white"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
     </div>
   </div>
 
@@ -51,9 +51,10 @@
 
     <div class="content-isi">
     
-    <table class="table table-hover">
+    <table class="table table-hover" style="margin-top:10px;">
       <thead>
         <tr>
+          <th scope="col">Pre Number</th>
           <th scope="col">Tanggal Pengajuan</th>
           <th scope="col">Tanggal Diserahkan</th>
           <th scope="col">Departemen</th>
@@ -61,7 +62,6 @@
           <th scope="col">Total</th>
           <th scope="col">File Pengajuan</th>
           <th scope="col">File Keuangan</th>
-          <th scope="col">Pre Number</th>
           <th scope="col">Status</th>
         </tr>
       </thead>
@@ -88,6 +88,7 @@
 
           echo '
           <tr>
+            <td>'.$row["pre_number"].'</td>
             <td>'.$row["tgl_pengajuan"].'</td>
             <td>'.$row["tgl_serah"].'</td>
             <td>'.$row["departemen"].'</td>
@@ -95,7 +96,7 @@
             <td>'.$row["total"].'</td>
             <td><a href="../uploads/'.$row['file_name_HR'].'">'.$row['file_name_HR'].'</a></td>
             <td><a href="../uploads/'.$row['file_name_Keuangan'].'">'.$row['file_name_Bayar'].'</a></td>
-            <td>'.$row["pre_number"].'</td>
+            
             <td>'.$status.'</td>
             <td style="text-align:center">
           </tr>
@@ -112,7 +113,7 @@
       <?php endif; ?>
       <?php for($i=1; $i <= $jumlahHalaman; $i++) : ?>
           <?php if($i == $halamanAktif) : ?>
-            <a href="?page=<?= $i; ?>" style="font-weight: bold;"> <?= $i; ?> </a>
+            <a href="?page=<?= $i; ?>" style="font-size: 15px;color:white"><mark> <?= $i; ?></mark> </a>
           <?php else : ?>
             <a href="?page=<?= $i; ?>"> <?= $i; ?> </a>
           <?php endif; ?>

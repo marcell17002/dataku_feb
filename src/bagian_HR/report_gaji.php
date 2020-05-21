@@ -23,7 +23,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../../assets/css/bagian_hr/sreport_gaji.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/bagian_hr/sreport.css">
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
@@ -35,22 +35,25 @@
             <img src="../../assets/img/avatar.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
         <div class="col-md-6">
-          <h3 style="padding-top:20%"> Hello, </h3>
-          <h5 style="padding-bottom:5%"> Admin HR </h5>
+          <h3 style="padding-top:20%;color:white"> Hello, </h3>
+          <h5 style="padding-bottom:5%;color:white"> Admin HR </h5>
         </div>
       </div>
     </div>
     
-    <a href="./report.php"><i class='far fa-credit-card' style='font-size:20px;margin-right:20px;'></i>Data Pegawai</a>
-    <a class="active"  href="./report_gaji.php"><i class='fas fa-money-check-alt' style='font-size:20px;margin-right:20px'></i>Gaji Pegawai</a>
-    <a  href="./report_pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
+    <a  href="./report.php" style="color:white"><i class='far fa-credit-card' style='font-size:20px;margin-right:20px;'></i>Data Pegawai</a>
+    <a class="active" href="./report_gaji.php" style="color:white"><i class='fas fa-money-check-alt' style='font-size:20px;margin-right:20px'></i>Gaji Pegawai</a>
+    <a  href="./report_pengajuan.php" style="color:white"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
     <div class="logout">
-      <a href="../logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
+      <a href="../logout.php" style="color:white"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
     </div>
   </div>
 
   <div class="content">
     <h2 style="text-align:center">Data Gaji</h2>
+    <div style="display:flex; justify-content:flex-end;">
+			<a href="./report_add.php" style="margin-right:5%"><button type="button" class="btn btn-success" style="margin-top:5%"><i class='fa fa-download' style='font-size:15px;padding-right:10px'></i> Unduh Daftar Gaji</button></a>
+		</div> 
     <div class="content-isi">
     
     <table class="table table-hover">
@@ -62,6 +65,7 @@
           <th scope="col">Gaji Pokok</th>
           <th scope="col">Pajak Bulanan</th>
           <th scope="col">Gaji Akhir</th>
+          <th scope="col"style="text-align:center;width:15%">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -77,7 +81,7 @@
           <td><?php echo $row["pajakbulanan"];?></td>
 		    	<td><?php echo $row["gajiakhir"];?></td>
           <td style="text-align:center">
-          <a href="report_gaji_download.php?>">Download </a>
+          <a href="report_gaji_download.php?>"><button type="button" class="btn btn-primary">Download</button></a>
           </td>
         </tr>
         <?php endforeach; ?> 
@@ -88,7 +92,7 @@
          <?php endif; ?>
          <?php for($i=1; $i <= $jumlahHalaman; $i++) : ?>
           <?php if($i == $halamanAktif) : ?>
-            <a href="?page=<?= $i; ?>" style="font-weight: bold;"> <?= $i; ?> </a>
+            <a href="?page=<?= $i; ?>" style="font-size: 15px;color:white"><mark> <?= $i; ?></mark> </a>
           <?php else : ?>
             <a href="?page=<?= $i; ?>"> <?= $i; ?> </a>
           <?php endif; ?>

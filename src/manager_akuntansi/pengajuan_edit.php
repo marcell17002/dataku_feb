@@ -113,9 +113,11 @@
           }else{
 
             $pre_number = htmlspecialchars($_POST["pre_number"]);
+            $tgl_serah = date("Y/m/d");
 
             $insert = $conn->query("UPDATE pembayaran
-            SET file_name_Keuangan = '$name', file_size_Keuangan = '$size', file_type_Keuangan = '$ext', pre_number = '$pre_number'
+            SET file_name_Keuangan = '$name', file_size_Keuangan = '$size', file_type_Keuangan = '$ext', pre_number = '$pre_number',
+            tgl_serah = '$tgl_serah'
             WHERE id_pembayaran = $id_pembayaran  ");
             
             if($insert){

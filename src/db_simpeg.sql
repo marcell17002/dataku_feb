@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2020 at 06:38 AM
+-- Generation Time: May 23, 2020 at 10:43 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -54,11 +54,10 @@ CREATE TABLE `data_karyawan` (
 INSERT INTO `data_karyawan` (`id`, `nama`, `ktp`, `JK`, `tmp_lhr`, `tgl_lhr`, `tgl_masuk`, `divisi`, `jabatan`, `no_telp`, `alamat`, `suamiistri`, `anak`, `gajiperbulan`, `pajakbulanan`, `gajiakhir`) VALUES
 (34, 'Heri', '1234567890123456', 'Pria', 'Jakarta', '2020-05-13', '0000-00-00', 'Kredit', 'Manager', '123412313', 'rumah', 'Ya', 1, 25000000, 2545833, 22204167),
 (36, 'Onad', '1233451235323', 'Pria', 'Depok', '2020-05-13', '0000-00-00', 'Kredit', 'Manager', '5476546', 'Bintaro', 'Ya', 1, 25000000, 2545833, 22204167),
-(38, 'Gado', '1343521334', 'Pria', 'Tokyo', '2020-05-06', '0000-00-00', 'IT', 'Board of Manager', '12312323', 'ginza 12', 'Tidak', 0, 0, 0, 0),
-(39, 'Giri', '18290742', 'Pria', 'Jakarta', '2020-05-14', '0000-00-00', 'IT', 'Board of Manager', '123123767', 'Test Halaman', 'Ya', 0, 0, 0, 0),
-(41, 'John', '539482309', 'Pria', 'Kutai', '2020-05-04', '0000-00-00', 'Kredit', 'Manager', '08922222222', 'TKI', 'Ya', 0, 0, 0, 0),
 (44, 'Kuki', '1234567890123455', 'Pria', 'Jakarta', '2020-05-06', '2020-05-04', 'IT', 'Board of Manager', '08922222222', 'rumah dapil', 'Ya', 0, 50000000, 8364583, 50000000),
-(45, 'Gorila', '1234567890123455', 'Pria', 'zimbabwe', '2020-05-04', '2020-05-21', 'IT', 'Board of Manager', '123123', 'dfad', 'Ya', 1, 50000000, 8270833, 41229167);
+(45, 'Gorila', '1234567890123455', 'Pria', 'zimbabwe', '2020-05-04', '2020-05-21', 'IT', 'Board of Manager', '123123', 'dfad', 'Ya', 1, 50000000, 8270833, 41229167),
+(46, 'Febry', '73310938532', 'Wanita', 'Ciamis', '2017-03-08', '2020-05-22', 'Kredit', 'Staff', '32455232143', 'Puri Indah', 'Tidak', 0, 10000000, 408333, 9491667),
+(47, 'John', '973675254', 'Pria', 'Johaneberg', '2020-05-12', '2020-05-25', 'Kredit', 'Board of Manager', '08922222222', 'Kuningan', 'Ya', 3, 50000000, 8177083, 41322917);
 
 -- --------------------------------------------------------
 
@@ -92,9 +91,9 @@ CREATE TABLE `pembayaran` (
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `deskripsi`, `total`, `tgl_pengajuan`, `tgl_serah`, `departemen`, `pre_number`, `status`, `file_name_HR`, `file_size_HR`, `file_type_HR`, `file_name_Keuangan`, `file_size_Keuangan`, `file_type_Keuangan`, `file_name_Bayar`, `file_size_Bayar`, `file_type_Bayar`) VALUES
 (75, 'Gaji Karyawan', 123456, '2020-05-20', '0000-00-00', 'HRD', '001', '', '42-16.jpg', 441504, 'jpg', 'logo-unpad1-4.jpg', 163835, 'jpg', 'pengajuan.pdf', 1300, 'pdf'),
-(76, 'Gaji Gajian', 200000000, '2020-05-20', '0000-00-00', 'HRD', '002', '', '765593_1-8.jpg', 72421, 'jpg', '', 0, '', 'pengajuan-1.pdf', 1300, 'pdf'),
-(80, 'Gaji Karyawan', 100000000, '2020-05-20', '0000-00-00', 'HRD', '', '', '42-13.jpg', 441504, 'jpg', '', 0, '', '', 0, ''),
-(81, 'Gaji Gajian', 100000000, '2020-05-21', '0000-00-00', 'HRD', '', '', 'tessss.pdf', 178038, 'pdf', '', 0, '', '', 0, '');
+(76, 'Gaji Gajian', 200000000, '2020-05-20', '0000-00-00', 'HRD', '002', '', '765593_1-8.jpg', 72421, 'jpg', '765593_1-13.jpg', 72421, 'jpg', '765593_1-11.jpg', 72421, 'jpg'),
+(80, 'Gaji Karyawan', 100000000, '2020-05-20', '0000-00-00', 'HRD', '001', '', '42-13.jpg', 441504, 'jpg', '765593_1-14.jpg', 72421, 'jpg', '765593_1-12.jpg', 72421, 'jpg'),
+(81, 'Gaji Gajian', 100000000, '2020-05-21', '0000-00-00', 'HRD', '', '', 'tessss.pdf', 178038, 'pdf', '', 0, '', 'a34_1x.jpg', 74492, 'jpg');
 
 -- --------------------------------------------------------
 
@@ -140,7 +139,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `data_karyawan`
 --
 ALTER TABLE `data_karyawan`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`

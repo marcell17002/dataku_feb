@@ -33,28 +33,29 @@
             <img src="../../assets/img/avatar.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
         <div class="col-md-6">
-          <h3 style="padding-top:20%"> Hello, </h3>
-          <h5 style="padding-bottom:5%"> Admin HR </h5>
+          <h3 style="padding-top:20%;color:white"> Hello, </h3>
+          <h5 style="padding-bottom:5%;color:white"> Admin HR </h5>
         </div>
       </div>
     </div>
     
-    <a  href="./report.php"><i class='far fa-credit-card' style='font-size:20px;margin-right:20px;'></i>Data Pegawai</a>
-    <a  href="./report_gaji.php"><i class='fas fa-money-check-alt' style='font-size:20px;margin-right:20px'></i>Gaji Pegawai</a>
-    <a  class="active" href="./report_pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
+    <a  href="./report.php" style="color:white"><i class='far fa-credit-card' style='font-size:20px;margin-right:20px;'></i>Data Pegawai</a>
+    <a  href="./report_gaji.php" style="color:white"><i class='fas fa-money-check-alt' style='font-size:20px;margin-right:20px'></i>Gaji Pegawai</a>
+    <a class="active" href="./report_pengajuan.php" style="color:white"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
     <div class="logout">
-      <a href="../logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
+      <a href="../logout.php" style="color:white"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
     </div>
   </div>
 
   <div class="content">
     <h2 style="text-align:center">Pengajuan Pembayaran</h2>
-    <div style="display:flex; justify-content:flex-end; width:100%; padding:0">
-			<a href="./report_pengajuan_add.php"><button type="button" class="btn btn-primary" style="margin-top:5%"><i class='fa fa-plus' style='font-size:20px;margin-right:5%'></i>  Ajukan Pembayaran</button></a>
+    <div style="display:flex; justify-content:flex-end;">
+			<a href="./report_add.php" style="margin-right:5%"><button type="button" class="btn btn-primary" style="margin-top:5%"><i class='fa fa-plus' style='font-size:15px;padding-right:10px'></i>  Pengajuan</button></a>
 		</div> 
 
     <div class="content-isi">
     
+    <div class="table-responsive-md">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -65,7 +66,7 @@
           <th scope="col">Total</th>
           <th scope="col">File HRD</th>
           <th scope="col">Status</th>
-          <th scope="col" style="width:20%">Action</th>
+          <th scope="col"style="text-align:center;width:15%">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -99,8 +100,9 @@
             <td><a href="../uploads/'.$row['file_name_HR'].'">'.$row['file_name_HR'].'</a></td>
             <td>'.$status.'</td>
             <td style="text-align:center">
-            <td><a href="report_pengajuan_edit.php?id_pembayaran='. $row['id_pembayaran'] .'"<i class="fas fa-edit" style="font-size:20px;margin-right:20px"></i> Edit </a></td>
-            <td><a href="report_pengajuan_delete.php?id_pembayaran='. $row["id_pembayaran"] .'"<i class="fas fa-trash" style="font-size:20px;margin-left:20px;margin-right:20px"></i>Delete</a></td>
+              <a href="report_pengajuan_edit.php?id_pembayaran='. $row['id_pembayaran'] .'"<button type="button" class="btn btn-warning">Edit</button></a>
+              <a href="report_pengajuan_delete.php?id_pembayaran='. $row["id_pembayaran"] .'"<button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
           </tr>
           ';
         }
@@ -115,7 +117,7 @@
       <?php endif; ?>
       <?php for($i=1; $i <= $jumlahHalaman; $i++) : ?>
           <?php if($i == $halamanAktif) : ?>
-            <a href="?page=<?= $i; ?>" style="font-weight: bold;"> <?= $i; ?> </a>
+            <a href="?page=<?= $i; ?>"style="font-size: 15px;color:white"><mark> <?= $i; ?></mark> </a>
           <?php else : ?>
             <a href="?page=<?= $i; ?>"> <?= $i; ?> </a>
           <?php endif; ?>
@@ -127,6 +129,7 @@
 
       </tbody>
     </table>
+      </div>
     </div>
   </div>
 </div>

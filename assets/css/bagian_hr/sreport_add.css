@@ -1,4 +1,4 @@
-body {font-family: Arial;background-image: url('../../img/background.jpg');overflow: hidden;}
+body {font-family: system-ui;background-image: url('../../img/background.jpg');overflow: hidden;}
 .konten{
   margin-left:2%;
   margin-top:2%;

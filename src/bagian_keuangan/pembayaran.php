@@ -32,16 +32,16 @@
             <img src="../../assets/img/keuangan.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
         <div class="col-md-6">
-          <h3 style="padding-top:20%"> Hello, </h3>
-          <h5 style="padding-bottom:5%"> Admin Keuangan </h5>
+          <h3 style="padding-top:20%;color:white"> Hello, </h3>
+          <h5 style="padding-bottom:5%;color:white"> Admin Keuangan </h5>
         </div>
       </div>
     </div>
     
-    <a href="./pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
-    <a class="active"  href="./pembayaran.php"><i class='fas fa-receipt' style='font-size:20px;margin-right:20px'></i> Pembayaran</a>
+    <a href="./pengajuan.php" style="color:white"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
+    <a class="active" style="color:white" href="./pembayaran.php"><i class='fas fa-receipt' style='font-size:20px;margin-right:20px'></i> Pembayaran</a>
     <div class="logout">
-      <a href="../logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
+      <a href="../logout.php" style="color:white"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
     </div>
   </div>
 
@@ -49,19 +49,19 @@
     <h2 style="text-align:center">Data Pegawai</h2>
 
     <div class="content-isi">
-    <table class="table table-hover">
+    <table class="table table-hover" style="margin-top:10px;">
       <thead>
-      <tr>
-          <th scope="col">Tanggal Pengajuan</th>
-          <th scope="col">Tanggal Diterima</th>
+        <tr style="color:#00365c;padding-bottom:20px;vertical-align:middle">
+          <th scope="col" style="width:10%" >Tanggal Pengajuan</th>
+          <th scope="col" style="width:10%">Tanggal Diterima</th>
           <th scope="col">Departemen</th>
           <th scope="col">Deskripsi</th>
           <th scope="col">Total</th>
           <th scope="col">File HRD</th>
           <th scope="col">File Keuangan</th>
-          <th scope="col">Bukti Bayar</th>
+          <th scope="col" style="text-align:center;width:10%">Bukti Bayar</th>
           <th scope="col">Status</th>
-          <th scope="col" style="width:20%">Action</th>
+          <th scope="col" style="text-align:center;width:15%">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -97,7 +97,8 @@
             <td><a href="../uploads/'.$row['file_name_Bayar'].'">'.$row['file_name_Bayar'].'</a></td>
             <td>'.$status.'</td>
             <td style="text-align:center">
-            <td><a href="pembayaran_edit.php?id_pembayaran='. $row['id_pembayaran'] .'"<i class="fas fa-edit" style="font-size:20px;margin-right:20px"></i> Bayar </a></td>
+              <a href="pembayaran_edit.php?id_pembayaran='. $row['id_pembayaran'] .'"<button type="button" class="btn btn-info">Bayar</button></a>
+            </td>
           </tr>
           ';
         }
@@ -112,7 +113,7 @@
       <?php endif; ?>
       <?php for($i=1; $i <= $jumlahHalaman; $i++) : ?>
           <?php if($i == $halamanAktif) : ?>
-            <a href="?page=<?= $i; ?>" style="font-weight: bold;"> <?= $i; ?> </a>
+            <a href="?page=<?= $i; ?>"style="font-size: 15px;color:white"><mark> <?= $i; ?></mark> </a>
           <?php else : ?>
             <a href="?page=<?= $i; ?>"> <?= $i; ?> </a>
           <?php endif; ?>

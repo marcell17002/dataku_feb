@@ -33,16 +33,16 @@
             <img src="../../assets/img/manager_kuntansi.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
         <div class="col-md-6">
-          <h3 style="padding-top:20%"> Hello, </h3>
-          <h5 style="padding-bottom:5%"> Manager Akuntansi </h5>
+          <h3 style="padding-top:20%;color:white"> Hello, </h3>
+          <h5 style="padding-bottom:5%;color:white"> Manager Keuangan </h5>
         </div>
       </div>
     </div>
     
-    <a href="./pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
-    <a class="active"  href="./pembayaran.php"><i class='fas fa-receipt' style='font-size:20px;margin-right:20px'></i> Pembayaran</a>
+    <a  style="color:white" href="./pengajuan.php"><i class='fas fa-file-upload' style='font-size:25px;margin-right:20px'></i>Pengajuan Pembayaran</a>
+    <a class="active"  href="./pembayaran.php" style="color:white" ><i class='fas fa-receipt' style='font-size:20px;margin-right:20px'></i> Pembayaran</a>
     <div class="logout">
-      <a href="../logout.php"><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
+      <a href="../logout.php" style="color:white" ><i class="fas fa-sign-out-alt" style='font-size:20px;margin-right:20px'></i>Log Out</a>
     </div>
   </div>
 
@@ -51,9 +51,9 @@
 
     <div class="content-isi">
     
-    <table class="table table-hover">
+    <table class="table table-hover" style="margin-top:10px;">
       <thead>
-        <tr>
+        <tr style="color:#00365c;padding-bottom:20px;vertical-align:middle">
           <th scope="col">Tanggal Pengajuan</th>
           <th scope="col">Tanggal Diterima</th>
           <th scope="col">Departemen</th>
@@ -112,7 +112,7 @@
       <?php endif; ?>
       <?php for($i=1; $i <= $jumlahHalaman; $i++) : ?>
           <?php if($i == $halamanAktif) : ?>
-            <a href="?page=<?= $i; ?>" style="font-weight: bold;"> <?= $i; ?> </a>
+            <a href="?page=<?= $i; ?>" style="font-size: 15px;color:white"><mark> <?= $i; ?></mark> </a>
           <?php else : ?>
             <a href="?page=<?= $i; ?>"> <?= $i; ?> </a>
           <?php endif; ?>

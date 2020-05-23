@@ -73,12 +73,12 @@
       <thead>
         <tr style="color:#00365c;padding-bottom:20px;vertical-align:middle">
           <th scope="col">ID</th>
+          <th scope="col" style="width:12%">Tanggal Masuk</th>
           <th scope="col">Nama</th>
           <th scope="col">KTP</th>
           <th scope="col">Jenis Kelamin</th>
           <th scope="col">Tempat Lahir</th>
-          <th scope="col">Tanggal Lahir</th>
-          <th scope="col">Tanggal Masuk</th>
+          <th scope="col" style="width:12%">Tanggal Lahir</th>
           <th scope="col">Divisi</th>
           <th scope="col">Jabatan</th>
           <th scope="col">Alamat</th>
@@ -92,12 +92,12 @@
         <?php	foreach( $karyawan as $row) : ?>
         <tr>
           <td><?php echo $row["id"];?></td>
+          <td><?php echo $row["tgl_masuk"];?></td>
           <td><?php echo $row["nama"];?></td>
           <td><?php echo $row["ktp"];?></td>
           <td><?php echo $row["JK"];?></td>
           <td><?php echo $row["tmp_lhr"];?></td>
 		  	  <td><?php echo $row["tgl_lhr"];?></td>
-          <td><?php echo $row["tgl_masuk"];?></td>
           <td><?php echo $row["divisi"];?></td>
 			    <td><?php echo $row["jabatan"];?></td>
 			    <td><?php echo $row["alamat"];?></td>

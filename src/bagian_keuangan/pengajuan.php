@@ -30,7 +30,7 @@
     <div clas="container">
       <div class="row">
       <div class="col-md-6">
-            <img src="../../assets/img/keuangan.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
+            <img src="../../assets/img/keuangan-3.png" style="width: 90% ; height : 90%;margin-top:15%;margin-left:10%;margin-bottom:20%">				
         </div>
         <div class="col-md-6">
           <h3 style="padding-top:20%;color:white"> Hello, </h3>
@@ -73,15 +73,15 @@
         while($row = $sql->fetch_assoc()){
 
           if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] == NULL && $row["file_name_Bayar"] == NULL){
-            $status = 'Diajukan';
+            $status = '<span style="color:yellow"><b>Waiting</b></span>';
           }else{
             if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] == NULL){
-                $status = 'Disetujui';
+                $status = '<span style="color:green"><b>Approved</b></span>';
             }else{
                 if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] != NULL){
-                    $status = 'Dibayarkan';
+                    $status = '<span style="color:grey"><b>Paid</b></span>';
                 }else{
-                    $status = 'Pending';
+                    $status = '<span style="color:red"><b>Pending</b></span>';
                 }
             }
           }

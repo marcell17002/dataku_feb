@@ -56,7 +56,7 @@
 		</div> 
     <div class="content-isi">
     
-    <table class="table table-hover">
+    <table class="table table-hover" style="margin-top:10px">
       <thead>
         <tr>
           <th scope="col">Nama</th>

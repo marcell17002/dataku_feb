@@ -124,7 +124,7 @@
             $pre_number = htmlspecialchars($_POST["pre_number"]);
 
             $insert = $conn->query("UPDATE pembayaran
-            SET file_name_Bayar = '$name', file_size_Bayar = '$size', file_type_Bayar = '$ext', pre_number = '$pre_number'
+            SET file_name_Keuangan = '$name', file_size_Keuangan = '$size', file_type_Keuangan = '$ext', pre_number = '$pre_number'
             WHERE id_pembayaran = $id_pembayaran  ");
             
             if($insert){

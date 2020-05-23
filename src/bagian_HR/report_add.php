@@ -12,13 +12,13 @@
       if( tambah($_POST) > 0){
         echo "<script>
         alert('Data berhasil ditambahkan!');
-        documents.location.href = 'report.php';
       </script>";
+      header('Location: report.php');
       }else{
         echo "<script>
         alert('Data gagal ditambahkan!');
-        documents.location.href = 'report.php';
       </script>";
+      header('Location: report.php');
       }
   }
 ?>

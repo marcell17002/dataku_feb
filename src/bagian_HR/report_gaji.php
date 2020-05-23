@@ -7,7 +7,7 @@
   }
   
   require '../config.php';
-  $jumlahDataPerHalaman = 10;
+  $jumlahDataPerHalaman = 6;
   $jumlahData = count(query("SELECT * FROM data_karyawan"));
   $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
   $halamanAktif = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;
@@ -52,7 +52,7 @@
   <div class="content">
     <h2 style="text-align:center">Data Gaji</h2>
     <div style="display:flex; justify-content:flex-end;">
-			<a href="./report_add.php" style="margin-right:5%"><button type="button" class="btn btn-success" style="margin-top:5%"><i class='fa fa-download' style='font-size:15px;padding-right:10px'></i> Unduh Daftar Gaji</button></a>
+			<a href="./report_gaji_download_daftar_gaji.php" style="margin-right:5%"><button type="button" class="btn btn-success" style="margin-top:5%"><i class='fa fa-download' style='font-size:15px;padding-right:10px'></i> Unduh Daftar Gaji</button></a>
 		</div> 
     <div class="content-isi">
     
@@ -81,7 +81,7 @@
           <td><?php echo $row["pajakbulanan"];?></td>
 		    	<td><?php echo $row["gajiakhir"];?></td>
           <td style="text-align:center">
-          <a href="report_gaji_download.php?>"><button type="button" class="btn btn-primary">Download</button></a>
+          <a href="report_gaji_download.php?id=<?=$row["id"];?>"><button type="button" class="btn btn-primary">Download</button></a>
           </td>
         </tr>
         <?php endforeach; ?> 

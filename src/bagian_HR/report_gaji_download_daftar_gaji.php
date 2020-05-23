@@ -5,8 +5,6 @@
 
     $karyawan = query("SELECT * FROM data_karyawan");
 
-    $id = '1';
-
     $mpdf = new \Mpdf\Mpdf();
     $html = '<!DOCTYPE html>
     <html lang="en">

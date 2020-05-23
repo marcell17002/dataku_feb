@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/../../vendor/autoload.php';
     session_start();
-    $conn = mysqli_connect("localhost","root","","db_simpeg");
+    require '../config.php';
 
     $id = $_GET["id"];
     $karyawan = query("SELECT * FROM data_karyawan WHERE id = $id");

@@ -62,31 +62,22 @@
   <div class="content">
     <h2 style="text-align:center">Validasi Data Pembayaran</h2>
     <div class="container-fluid">
-      <div class="row">
         <div class="content-isi">
-
-
           <form  method="post"  action="" enctype="multipart/form-data"> 
-          
-                <input type="hidden" nama="id_pembayaran" value="<?= $karyawan["id_pembayaran"]; ?>">
-                  <h4> Isi untuk Validasi </h4>
-                    <div class="form-group col-md-6">
-                      <label for="pre_number">Pre number</label>
-                      <input type="text" class="form-control" id="pre_number" name="pre_number" placeholder="Pre_number" required
-                      value="<?= $karyawan["pre_number"]; ?>">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-10">
-                      <label for="bukti_bayar">Upload File </label>
-                      <input type="file" name="myFile" class="filestyle" data-icon="false">
-                    </div>
-                    <div class="col-md-2">
-                      <input type="submit" name="upload" class="btn btn-primary" value="Upload">
-                    </div>
-                  </div>
+            <input type="hidden" nama="id_pembayaran" value="<?= $karyawan["id_pembayaran"]; ?>">
+              <h4> Isi untuk Validasi </h4>
+                <div class="form-group col-md-6">
+                  <label for="pre_number">Pre number</label>
+                  <input type="text" class="form-control" id="pre_number" name="pre_number" placeholder="Pre_number" required value="<?= $karyawan["pre_number"]; ?>">
+                </div>
+                <div class="col-md-10">
+                  <label for="bukti_bayar">Upload File </label>
+                  <input type="file" name="myFile" class="filestyle" data-icon="false">
+                </div>
+                <div class="col-md-2">
+                  <input type="submit" name="upload" class="btn btn-primary" value="Upload">
+                </div>
           </form>
-
           <?php
         // definisi folder upload
         define("UPLOAD_DIR", "../uploads/");

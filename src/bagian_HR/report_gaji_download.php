@@ -1,14 +1,14 @@
 <?php
     require_once __DIR__ . '/../../vendor/autoload.php';
     session_start();
-    require '../config.php';
+    $conn = mysqli_connect("localhost","root","","db_simpeg");
 
-    $karyawan = query("SELECT * FROM data_karyawan");
-
-    $id = '1';
+    $sql = "SELECT * FROM data_karyawan";
+    $query = mysqli_query($conn, $sql);
 
     $mpdf = new \Mpdf\Mpdf();
 
+    if($query){
     $data = '';
     $data .= ' 
         <table style=" border-collapse: collapse;width:100%;">
@@ -25,29 +25,30 @@
         <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">'.$id.'</th>
+            <th scope="col">nama</th>
             <th scope="col">Divisi</th>
             <th scope="col">Jabatan</th>
             <th scope="col">Gaji Pokok</th>
             <th scope="col">Pajak Bulanan</th>
             <th scope="col">Gaji Akhir</th>
           </tr>
-        </thead>
-        </table>';
-    // foreach( $karyawan as $row) :
-    // $data .= '
-    // <tr>
-    //   <td>'. $row["nama"].'</td>
-    //   <td><'.$row["divisi"].'></td>
-    //   <td><'.$row["jabatan"].'></td>
-    //   <td><'.$row["gajiperbulan"].'></td>
-    //   <td><'.$row["pajakbulanan"].'></td>
-    //   <td>'.$row["gajiakhir"].'</td>
-    // </tr> 
-    // </tbody>
-    // </table>';
-    // endforeach;
-    $mpdf ->WriteHTML($data);
+        </thead>';
+    foreach( $sql as $row) {
+        $data .= '
+            <tbody>
+            <tr>
+            <td>'. $row["nama"].'</td>
+            <td><'.$row["divisi"].'></td>
+            <td><'.$row["jabatan"].'></td>
+            <td><'.$row["gajiperbulan"].'></td>
+            <td><'.$row["pajakbulanan"].'></td>
+            <td>'.$row["gajiakhir"].'</td>
+            </tr> 
+            </tbody>
+            </table>';
+    }
+}
+    $mpdf->WriteHTML($data);
     $mpdf->Output('slip-gaji-karyawan.pdf','D');
     header('Location: report_gaji.php?status=sukses');
 

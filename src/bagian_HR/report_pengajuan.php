@@ -56,7 +56,7 @@
     <div class="content-isi">
     
     <div class="table-responsive-md">
-    <table class="table table-hover">
+    <table class="table table-hover" style="margin-top:10px">
       <thead>
         <tr>
           <th scope="col">Tanggal Pengajuan</th>
@@ -77,15 +77,15 @@
         while($row = $sql->fetch_assoc()){
 
           if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] == NULL && $row["file_name_Bayar"] == NULL){
-            $status = 'Diajukan';
+            $status = '<span style="color:yellow"><b>Waiting</b></span>';
           }else{
             if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] == NULL){
-                $status = 'Disetujui';
+                $status = '<span style="color:green"><b>Approved</b></span>';
             }else{
                 if ($row["file_name_HR"] != NULL && $row["file_name_Keuangan"] != NULL && $row["file_name_Bayar"] != NULL){
-                    $status = 'Dibayarkan';
+                    $status = '<span style="color:grey"><b>Paid</b></span>';
                 }else{
-                    $status = 'Pending';
+                    $status = '<span style="color:red"><b>Pending</b></span>';
                 }
             }
           }

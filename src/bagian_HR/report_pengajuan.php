@@ -50,7 +50,7 @@
   <div class="content">
     <h2 style="text-align:center">Pengajuan Pembayaran</h2>
     <div style="display:flex; justify-content:flex-end;">
-			<a href="./report_add.php" style="margin-right:5%"><button type="button" class="btn btn-primary" style="margin-top:5%"><i class='fa fa-plus' style='font-size:15px;padding-right:10px'></i>  Pengajuan</button></a>
+			<a href="./report_pengajuan_add.php" style="margin-right:5%"><button type="button" class="btn btn-primary" style="margin-top:5%"><i class='fa fa-plus' style='font-size:15px;padding-right:10px'></i>  Pengajuan</button></a>
 		</div> 
 
     <div class="content-isi">

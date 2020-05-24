@@ -66,79 +66,75 @@
       <div class="row">
         <div class="content-isi">
           <form  method="post"  action=""> 
-                <input type="hidden" nama="id" value="<?= $karyawan["id"]; ?>">
-                
-                  <div class="form-group col-md-6">
-                  <label for="nama">Nama Lengkap</label>
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required
-                  value="<?= $karyawan["nama"]; ?>">
-                  </div>
-                  <div class="form-group col-md-4">
-                  <label for="ktp">Nomor KTP</label>
-                  <input type="text" class="form-control" id="ktp" name="ktp" placeholder="Nomor KTP" required
-                  value="<?= $karyawan["ktp"]; ?>">
-                  </div>
-                  <div class="form-group col-md-2">
-                      <label for="JK"> Jenis kelamin</label>
-                      <select id="JK" name="JK" class="form-control" required value="<?= $karyawan["JK"]; ?>">
-                          <option value = "Pria">Pria</option>
-                          <option value = "Wanita">Wanita</option>
-                      </select>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <label for="tmp_lhr">Tempat Lahir</label>
-                      <input type="text" class="form-control" id="tmp_lhr" name="tmp_lhr" placeholder="Tempat lahir" required
-                      value="<?= $karyawan["tmp_lhr"]; ?>">
-                  </div>
-                  <div class="form-group col-md-3">
-                      <label for="tgl_lhr">Tanggal Lahir</label> <br>
-                      <input type="date"  class="form-control id="tgl_lhr" name="tgl_lhr" required value="<?= $karyawan["tgl_lhr"]; ?>">
-                  </div>
-                  <div class="form-group col-md-3">
-                      <label for="tgl_masuk">Tanggal Masuk</label> <br>
-                      <input type="date"  class="form-control id="tgl_masuk" name="tgl_masuk" required value="<?= $karyawan["tgl_masuk"]; ?>">
-                  </div>
-                  <div class="form-group col-md-3">
-                      <label for="divisi">Divisi</label>
-                      <select id="divisi" name="divisi" class="form-control" required value="<?= $karyawan["divisi"]; ?>">
-                          <option value = "Kredit" selected>Kredit</option>
-                          <option value = "IT">IT</option>n>
-                      </select>
-                  </div>
-                  <div class="form-group col-md-3">
-                      <label for="jabatan">Jabatan</label>
-                      <select id="jabatan" name="jabatan" class="form-control" required value="<?= $karyawan["jabatan"]; ?>">
-                          <option value = "Manager" selected>Manager</option>
-                          <option value = "Staff">Staff</option>
-                          <option value = "Board of Manager" >Board of Manager</option>
-                      </select>
-                  </div>
-
-                  <div class="form-group col-md-3">
-                      <label for="no_telp">No. Handphone</label>
-                      <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="+62 ..." required
-                      value="<?= $karyawan["no_telp"]; ?>">
-                  </div>
-
-                  <div class="form-group col-md-2">
-                      <label for="suamiistri"> Menikah</label>
-                      <select id="suamiistri" name="suamiistri" class="form-control" required value="<?= $karyawan["suamiistri"]; ?>">
-                          <option value = "Ya" >Ya</option>
-                          <option value = "Tidak">Tidak</option>
-                      </select>
-                  </div>
-                  <div class="form-group col-md-3">
-                      <label for="anak">Jumlah Anak</label>
-                      <input type="text" class="form-control" id="anak" name="anak" placeholder="..." required value="<?= $karyawan["anak"]; ?>">
-                  </div>
-                  <div class="form-group col-md-8">
-                      <label for="alamat">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required
-                      value="<?= $karyawan["alamat"]; ?>">
-                  </div>
-              <br>
-              <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+              <input type="hidden" nama="id" value="<?= $karyawan["id"]; ?>">
+                <div class="form-group col-md-6">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required
+                value="<?= $karyawan["nama"]; ?>">
+                </div>
+                <div class="form-group col-md-4">
+                <label for="ktp">Nomor KTP</label>
+                <input type="text" class="form-control" id="ktp" name="ktp" placeholder="Nomor KTP" required
+                value="<?= $karyawan["ktp"]; ?>">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="JK"> Jenis kelamin</label>
+                    <select id="JK" name="JK" class="form-control" required value="<?= $karyawan["JK"]; ?>">
+                        <option value = "Pria">Pria</option>
+                        <option value = "Wanita">Wanita</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="tmp_lhr">Tempat Lahir</label>
+                    <input type="text" class="form-control" id="tmp_lhr" name="tmp_lhr" placeholder="Tempat lahir" required
+                    value="<?= $karyawan["tmp_lhr"]; ?>">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="tgl_lhr">Tanggal Lahir</label> <br>
+                    <input type="date"  class="form-control id="tgl_lhr" name="tgl_lhr" required value="<?= $karyawan["tgl_lhr"]; ?>">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="tgl_masuk">Tanggal Masuk</label> <br>
+                    <input type="date"  class="form-control id="tgl_masuk" name="tgl_masuk" required value="<?= $karyawan["tgl_masuk"]; ?>">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="divisi">Divisi</label>
+                    <select id="divisi" name="divisi" class="form-control" required value="<?= $karyawan["divisi"]; ?>">
+                        <option value = "Kredit" selected>Kredit</option>
+                        <option value = "IT">IT</option>n>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="jabatan">Jabatan</label>
+                    <select id="jabatan" name="jabatan" class="form-control" required value="<?= $karyawan["jabatan"]; ?>">
+                        <option value = "Manager" selected>Manager</option>
+                        <option value = "Staff">Staff</option>
+                        <option value = "Board of Manager" >Board of Manager</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="no_telp">No. Handphone</label>
+                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="+62 ..." required
+                    value="<?= $karyawan["no_telp"]; ?>">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="suamiistri"> Menikah</label>
+                    <select id="suamiistri" name="suamiistri" class="form-control" required value="<?= $karyawan["suamiistri"]; ?>">
+                        <option value = "Ya" >Ya</option>
+                        <option value = "Tidak">Tidak</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="anak">Jumlah Anak</label>
+                    <input type="text" class="form-control" id="anak" name="anak" placeholder="..." required value="<?= $karyawan["anak"]; ?>">
+                </div>
+                <div class="form-group col-md-8">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required
+                    value="<?= $karyawan["alamat"]; ?>">
+                </div>
+            <br>
+            <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                 <button type="submit" name='submit' class="btn btn-primary" style="margin-top:5%"> Update</button>
               </div>
           </form>

@@ -83,7 +83,7 @@ if(isset($_POST["login"]) ){
 			</div>
 		</div>
 		<div class="row">
-			<a href="https://www.instagram.com/arntonius/"><h5 style="color: #grey ; text-align: center;padding-top:5%;"> Copyright © 2019-2020 by Marcell Victor. All rights reserved.</h5></a>
+			<a href="https://www.instagram.com/arntonius/"><h5 style="color: #grey ; text-align: center;padding-top:5%;"> Copyright © 2019-2020 by Marcell Victor</a><br><a href="https://wa.me/0895401011469/?text=Hi, I would like to create a new website "> All rights reserved</h5></a>
 		</div>
 	</div>
 </body>
